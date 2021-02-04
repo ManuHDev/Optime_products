@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Optime - New Product{% endblock %}
+
+{% block body %}
+    <div class="row">
+    <div class="col"><h3>Create new Product</h3></div>
+    <div class="col text-right"><a href="{{ path('category_index') }}" class="btn btn-primary">Categories</a></div>
+    </div>
+
+    {{ include('product/_form.html.twig') }}
+
+    <a href="{{ path('product_index') }}" class="btn btn-primary">back to list</a>
+{% endblock %}

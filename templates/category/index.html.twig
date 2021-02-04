@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Optime - Category index{% endblock %}
+
+{% block body %}
+    <div class="row">
+    <div class="col"><h3>Category index</h3></div>
+    <div class="col text-right"><a href="{{ path('product_index') }}" class="btn btn-primary">Products</a></div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.active ? 'Yes' : 'No' }}</td>
+                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-warning">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('category_new') }}" class="btn btn-success">Create new</a>
+{% endblock %}
